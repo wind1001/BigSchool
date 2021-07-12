@@ -7,19 +7,13 @@ using System.Web;
 
 namespace BigSchool.ViewModels
 {
-    public class FutureDate : ValidationAttribute
+    public class FutureDate: ValidationAttribute
     {
-        public object DatetimeStyles { get; private set; }
-
         public override bool IsValid(object value)
         {
             DateTime dateTime;
-            var isValid = DateTime.TryParseExact(Convert.ToString(value),
-                "dd/M/yyyy",
-                CultureInfo.CurrentCulture,
-                DatetimeStyles.None,
-                out datetime)
-
-        }
+            var isValid = DateTime.TryParseExact(Convert.ToString(value), "dd/M/yyyy", CultureInfo.CurrentCulture, DateTimeStyles.None, out dateTime);
+            return base.IsValid(value);
+        }          
     }
 }
